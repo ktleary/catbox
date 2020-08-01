@@ -37,11 +37,11 @@ class Catbox {
       console.log(
         `cat2 was ${
           this.cat2 < 0 ? 'dead' : 'alive'
-        } \nCatbox thought: ${
+        } \nAfter ${this.outcome2looks} guesses,\nCatbox thought: ${
           ((this.outcome2dead / this.outcome2looks) * 100).toFixed(2)
         }% chance it was dead`
       )
-    }, 30000)
+    }, 60000)
     this.streamNumbers = () => {
       setInterval(
         () => console.log(this.posNegUndef(this.cat1, 'cat1')),
