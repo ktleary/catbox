@@ -33,15 +33,13 @@ class Catbox {
     }
     setTimeout(() => {
       this.cat2 = this.dualcat.outcome2()
-      console.log('outcome2 observed')
-      console.log(
-        `cat2 was ${
-          this.cat2 < 0 ? 'dead' : 'alive'
-        } \nAfter ${this.outcome2looks} guesses,\nCatbox thought: ${
-          ((this.outcome2dead / this.outcome2looks) * 100).toFixed(2)
-        }% chance it was dead`
+      console.log(`cat2 observed to be ${
+        this.cat2 < 0 ? 'dead' : 'alive'}.`)
+      console.log(`After ${this.outcome2looks} guesses,\nCatbox thought: ${
+        ((this.outcome2dead / this.outcome2looks) * 100).toFixed(2)
+      }% chance it was dead\n`
       )
-    }, 60000)
+    }, 30000)
     this.streamNumbers = () => {
       setInterval(
         () => console.log(this.posNegUndef(this.cat1, 'cat1')),

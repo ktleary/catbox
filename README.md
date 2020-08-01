@@ -15,23 +15,24 @@ While cat2 is undefined, the generator randomly guesses its fate.
 
 ```
 catbox  node main.js
-{ cat1: -1 }
+{ cat1: 1 }
 { cat2: -1 }
 
-{ cat1: -1 }
-{ cat2: -1 }
+{ cat1: 1 }
+{ cat2: 1 }
 
 ...
 
-{ cat1: -1 }
-{ cat2: 1 }
+{ cat1: 1 }
+{ cat2: -1 }
 
-outcome2 observed
-cat2 was alive
-Catbox thought 41.67% chance it was dead
-{ cat1: -1 }
-{ cat2: 1 }
+cat2 observed to be dead.
+After 12 guesses,
+Catbox thought: 58.33% chance it was dead
 
-{ cat1: -1 }
-{ cat2: 1 }
+{ cat1: 1 }
+{ cat2: -1 }
+
+{ cat1: 1 }
+{ cat2: -1 }
 ```
