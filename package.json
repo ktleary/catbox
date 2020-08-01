@@ -1,0 +1,27 @@
+{
+  "name": "catbox",
+  "version": "1.0.0",
+  "description": "catbox",
+  "main": "catbox.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "mocha": "^8.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktleary/catbox.git"
+  },
+  "keywords": [
+    "catbox"
+  ],
+  "author": "ktleary",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ktleary/catbox/issues"
+  },
+  "homepage": "https://github.com/ktleary/catbox#readme"
+}
