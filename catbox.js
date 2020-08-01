@@ -37,7 +37,7 @@ class Catbox {
       console.log(
         `cat2 was ${
           this.cat2 < 0 ? 'dead' : 'alive'
-        } \nCatbox thought ${
+        } \nCatbox thought: ${
           ((this.outcome2dead / this.outcome2looks) * 100).toFixed(2)
         }% chance it was dead`
       )
