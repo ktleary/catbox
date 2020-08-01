@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "catbox",
   "main": "catbox.js",
-  "dependencies": {},
+  "dependencies": {
+    "prettier": "^2.0.5"
+  },
   "devDependencies": {
     "eslint": "^7.6.0",
     "mocha": "^8.0.1"
