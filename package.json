@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "eslint": "^7.12.1",
-    "mocha": "^8.2.0"
+    "mocha": "^8.2.1"
   },
   "homepage": "https://github.com/ktleary/catbox#readme",
   "keywords": [

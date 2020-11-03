@@ -2,7 +2,7 @@ dependencies:
   prettier: 2.1.2
 devDependencies:
   eslint: 7.12.1
-  mocha: 8.2.0
+  mocha: 8.2.1
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.10.4:
@@ -749,7 +749,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
-  /mocha/8.2.0:
+  /mocha/8.2.1:
     dependencies:
       '@ungap/promise-all-settled': 1.1.2
       ansi-colors: 4.1.1
@@ -781,7 +781,7 @@ packages:
       node: '>= 10.12.0'
     hasBin: true
     resolution:
-      integrity: sha512-lEWEMq2LMfNJMKeuEwb5UELi+OgFDollXaytR5ggQcHpzG3NP/R7rvixAvF+9/lLsTWhWG+4yD2M70GsM06nxw==
+      integrity: sha512-cuLBVfyFfFqbNR0uUKbDGXKGk+UDFe6aR4os78XIrMQpZl/nv7JYHcvP5MFIAb374b2zFXsdgEGwmzMtP0Xg8w==
   /ms/2.1.2:
     dev: true
     resolution:
@@ -1217,5 +1217,5 @@ packages:
       integrity: sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==
 specifiers:
   eslint: ^7.12.1
-  mocha: ^8.2.0
+  mocha: ^8.2.1
   prettier: ^2.1.2
