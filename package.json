@@ -10,7 +10,7 @@
     "prettier": "^2.1.2"
   },
   "devDependencies": {
-    "eslint": "^7.12.1",
+    "eslint": "^7.13.0",
     "mocha": "^8.2.1"
   },
   "homepage": "https://github.com/ktleary/catbox#readme",
