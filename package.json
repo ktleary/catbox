@@ -7,10 +7,10 @@
     "url": "https://github.com/ktleary/catbox/issues"
   },
   "dependencies": {
-    "prettier": "^2.2.0"
+    "prettier": "^2.2.1"
   },
   "devDependencies": {
-    "eslint": "^7.14.0",
+    "eslint": "^7.18.0",
     "mocha": "^8.2.1"
   },
   "homepage": "https://github.com/ktleary/catbox#readme",
