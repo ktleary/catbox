@@ -1,58 +1,93 @@
-class Catbox {
-  constructor() {
-    this.numbers = [-1, 1, -1, 1, -1, 1, -1, 1, -1, 1]
-    this.randomFromRange = (min = 3, max = 100) => {
-      const lmin = Math.ceil(min)
-      const lmax = Math.floor(max)
-      return Math.floor(Math.random() * (lmax - lmin + 1)) + lmin
-    }
+const print = console.log
 
-    this.randomFromArray = arr => arr[Math.floor(Math.random() * arr.length)]
+// getRandomBinary ::
+const getRandomBinary = () => {
+  function randomBinary() {
+    return Math.round(Math.random())
+  }
+  return randomBinary
+}
 
-    this.generatePairFx = () => {
-      const rndm = this.randomFromRange()
-      const coinflip = this.randomFromRange(0, 1)
-      const dualcat = coinflip === 0 ? [rndm, rndm * -1] : [rndm * -1, rndm]
-
-      return {
-        outcome1: () => dualcat[0],
-        outcome2: () => dualcat[1],
-      }
-    }
-    this.dualcat = this.generatePairFx()
-
-    this.cat1 = this.dualcat.outcome1()
-    this.cat2 = undefined
-    this.outcome2looks = 0
-    this.outcome2dead = 0
-
-    this.posNegUndef = (num, cat) => {
-      if (num > 0) return { [cat]: 1 }
-      if (num < 0) return { [cat]: -1 }
-      if (!num) return { [cat]: this.randomFromArray(this.numbers) }
-    }
-    setTimeout(() => {
-      this.cat2 = this.dualcat.outcome2()
-      console.log(`cat2 observed to be ${
-        this.cat2 < 0 ? 'dead' : 'alive'}.`)
-      console.log(`After ${this.outcome2looks} guesses,\nCatbox thought: ${
-        ((this.outcome2dead / this.outcome2looks) * 100).toFixed(2)
-      }% chance it was dead\n`
-      )
-    }, 30000)
-    this.streamNumbers = () => {
-      setInterval(
-        () => console.log(this.posNegUndef(this.cat1, 'cat1')),
-        2400
-      )
-      setInterval(() => {
-        const result = this.posNegUndef(this.cat2, 'cat2')
-        console.log(result, '\n')
-        this.outcome2looks++
-        if (result['cat2'] === -1) this.outcome2dead++
-      }, 2400)
-    }
+const catStatus = () => {
+  const coinflip = () => Math.round(Math.random())
+  const outcome = coinflip()
+  return {
+    cat1Status: () => !!outcome,
+    cat2Status: () => !outcome,
+    coinflip,
   }
 }
 
-module.exports = { Catbox }
+const catVerdict = (cat, status) =>
+  `${cat} was observed to be ${status < 0 ? 'dead' : 'alive'}`
+
+const guessWork = (looks) =>
+  `After ${looks} guesses,\nCatbox thought: ${(
+    (outcome2dead / outcome2looks) *
+    100
+  ).toFixed(2)}% chance it was dead\n`
+
+const Effects = {
+  logCatStatus: (cat, status, who) =>
+    console.log(`${who || ''}${cat} is ${status() < 1 ? 'dead' : 'alive'}`),
+}
+
+// checking to see if entangled generated numbers influence random number generation over a given number of guesses
+
+const messages = Object.freeze({
+  cat1Status: 'Cat one is ',
+})
+
+function guessCat2Status(coinflip) {
+  const guesses = Array(201).fill(() => coinflip())
+  const averageReducer = (agg, item, i, { length }) =>
+    i + 1 === length ? (agg + item) / length : agg + item
+  const guessAverage = guesses.map((guess) => guess()).reduce(averageReducer, 0)
+  return guessAverage.toFixed(3)
+}
+
+const agents = Object.freeze({
+  cat1: 'Cat One',
+  cat2: 'Cat Two',
+  compiler: 'The Compiler',
+})
+
+function createCatReport({ agents, cat1Status, cat2Status, compilerGuess }) {
+  const output = (console, str) => console.info(str)
+  const deadOrAlive = (score) => (score ? 'alive' : 'dead')
+
+  const report = Object.freeze({
+    cat1Status: `\n${agents.cat1} is ${deadOrAlive(cat1Status())}`,
+    compilerThought: `\n${agents.compiler} thought ${
+      agents.cat2
+    } is ${deadOrAlive(Math.round(compilerGuess))}`,
+    compilerAverageGuess: `${agents.compiler} on average guessed: ${compilerGuess}`,
+    cat2Status: `\n${agents.cat2} is ${deadOrAlive(cat2Status())}. Long live ${
+      agents.cat2
+    }.\n`,
+  })
+
+  function write() {
+    return Object.values(report).forEach((status) => output(console, status))
+  }
+  return write
+}
+
+const { cat1Status, cat2Status, coinflip } = catStatus()
+const compilerGuess = guessCat2Status(coinflip)
+
+const catReport = createCatReport({
+  agents,
+  cat1Status,
+  cat2Status,
+  compilerGuess,
+})
+catReport()
+
+// Effects.logCatStatus(
+//   cats.cat2,
+//   () => Math.round(compilerGuess),
+//   'The Compiler guessed: '
+// )
+// console.log(`Average compiler guess: ${compilerGuess}`)
+// Effects.logCatStatus(agents.cat2, cat2Status)
