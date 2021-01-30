@@ -12,7 +12,7 @@ const matched = (stats) =>
 const createCatReport = ({ CAT1, CAT2, MACHINE, stats }) => {
   const title = "\n-- Cats Report -------------\n";
   const catStatus = (cat, stats) =>
-    `- ${cat} is ${deadOrAlive(prop(cat, stats))}`;
+    `- ${cat} is ${deadOrAlive(prop(cat, stats))}.`;
   const machineStatus = (machine, cat, stats) =>
     `- ${machine} ${matched(stats)} predicted ${cat} is ${deadOrAliveRound(
       prop(MACHINE, stats)
