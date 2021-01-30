@@ -23,5 +23,9 @@
   },
   "scripts": {
     "test": "mocha"
+  },
+  "dependencies": {
+    "loogie": "^0.3.0",
+    "ramda": "^0.27.1"
   }
 }

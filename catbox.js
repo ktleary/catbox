@@ -1,71 +1,51 @@
-const agents = Object.freeze({
-  cat1: 'Cat One',
-  cat2: 'Cat Two',
-  machine: 'The Machine',
-})
+const { divide, length, map, prop, sum } = require("ramda");
+const { CAT1, CAT2, MACHINE } = require("./constants");
+const { resolve, writeEachValue } = require("./util");
+const createCatReport = require("./report");
+const { random, round } = Math;
+const { freeze } = Object;
 
-// coinflip is the random generator produced during cat creation
-// () -> Number
+// guessCat2Status :: (Function) -> Number
 function guessCat2Status(coinflip) {
-  const guesses = Array(1001).fill(() => coinflip())
-  const averageReducer = (agg, item, i, { length }) =>
-    i + 1 === length ? (agg + item) / length : agg + item
-  const guessAverage = guesses.map((guess) => guess()).reduce(averageReducer, 0)
-  return guessAverage.toFixed(3)
+  const guesses = map(
+    resolve,
+    Array(1001).fill(() => coinflip())
+  );
+
+  return divide(sum(guesses), length(guesses));
 }
 
-function createCatReport({ agents, stats }) {
-  const deadOrAlive = (score) => (score ? 'alive' : 'dead')
-  const matched =
-    deadOrAlive(Math.round(stats[agents.machine])) ===
-    deadOrAlive(stats[agents.cat2])
-      ? 'correctly'
-      : 'incorrectly'
-  const report = {
-    title: '\n-- Cats Report -------------\n',
-    [agents.cat1]: `- ${agents.cat1} is ${deadOrAlive(stats[agents.cat1])}`,
-    [agents.machine]: `- ${agents.machine} ${matched} predicted ${
-      agents.cat2
-    } is ${deadOrAlive(
-      Math.round(stats[agents.machine])
-    )}, \n  picking alive ${(stats[agents.machine] * 100).toFixed(
-      2
-    )}% of over a thousand times.`,
-    [agents.cat2]: `- ${agents.cat2} is ${deadOrAlive(
-      stats[agents.cat2]
-    )}. Long live ${agents.cat2}.`,
-    footer: '\n------------- \n',
-  }
-  return report
-}
-
-function createCats(agents) {
-  const coinflipper = () => Math.round(Math.random())
-  const outcome = coinflipper()
-  const catPackage = Object.freeze({
-    [agents.cat1]: () => !!outcome,
-    [agents.cat2]: () => !outcome,
+// createCats :: (String, String) -> Object
+function createCats(CAT1, CAT2) {
+  const coinflipper = () => round(random());
+  const outcome = coinflipper();
+  return freeze({
+    [CAT1]: () => !!outcome,
+    [CAT2]: () => !outcome,
     coinflipper,
-  })
-  return catPackage
+  });
 }
 
-const catPackage = createCats(agents)
-const machineGuess = guessCat2Status(catPackage.coinflipper)
+// createStats :: (Object, Number) -> Object
+const createStats = (catPackage, machineGuess) => ({
+  [CAT1]: catPackage[CAT1](),
+  [MACHINE]: machineGuess,
+  [CAT2]: catPackage[CAT2](),
+});
 
-const stats = {
-  [agents.cat1]: catPackage[agents.cat1](),
-  [agents.machine]: machineGuess,
-  [agents.cat2]: catPackage[agents.cat2](),
+function main() {
+  const catPackage = createCats(CAT1, CAT2);
+  const machineGuess = guessCat2Status(prop("coinflipper", catPackage));
+  const stats = createStats(catPackage, machineGuess);
+  console.log(stats);
+  const catReport = createCatReport({
+    CAT1,
+    CAT2,
+    MACHINE,
+    stats,
+  });
+  return writeEachValue(catReport);
 }
 
-const catReport = createCatReport({
-  agents,
-  stats,
-})
-
-const writeCatReport = (report) =>
-  Object.values(report).forEach((line) => console.log(line))
-
-// eslint-disable-next-line
-writeCatReport(catReport)
+/* eslint-disable fp/no-unused-expression */
+main();
