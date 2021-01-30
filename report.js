@@ -18,7 +18,7 @@ const createCatReport = ({ CAT1, CAT2, MACHINE, stats }) => {
       prop(MACHINE, stats)
     )}, \n  picking alive ${(prop(machine, stats) * 100).toFixed(
       2
-    )}% of over a thousand times.`;
+    )}% of over 500 times.`;
   const longLive = (cat) => ` Long live ${cat}.`;
   const footer = "\n------------- \n";
 

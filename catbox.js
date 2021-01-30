@@ -2,14 +2,14 @@ const { divide, length, map, prop, sum } = require("ramda");
 const { CAT1, CAT2, MACHINE } = require("./constants");
 const { resolve, writeEachValue } = require("./util");
 const createCatReport = require("./report");
-const { random, round } = Math;
+const { Random } = require("random-js");
 const { freeze } = Object;
 
 // guessCat2Status :: (Function) -> Number
 function guessCat2Status(coinflip) {
   const guesses = map(
     resolve,
-    Array(1001).fill(() => coinflip())
+    Array(501).fill(() => coinflip())
   );
 
   return divide(sum(guesses), length(guesses));
@@ -17,7 +17,8 @@ function guessCat2Status(coinflip) {
 
 // createCats :: (String, String) -> Object
 function createCats(CAT1, CAT2) {
-  const coinflipper = () => round(random());
+  const random = new Random();
+  const coinflipper = () => random.integer(0, 1);
   const outcome = coinflipper();
   return freeze({
     [CAT1]: () => !!outcome,
