@@ -6,10 +6,13 @@
   "bugs": {
     "url": "https://github.com/ktleary/catbox/issues"
   },
+  "dependencies": {
+    "ava": "^3.15.0",
+    "ramda": "^0.27.1"
+  },
   "devDependencies": {
     "eslint": "^7.18.0",
-    "eslint-plugin-fp": "^2.3.0",
-    "mocha": "^8.2.1"
+    "eslint-plugin-fp": "^2.3.0"
   },
   "homepage": "https://github.com/ktleary/catbox#readme",
   "keywords": [
@@ -22,10 +25,6 @@
     "url": "git+https://github.com/ktleary/catbox.git"
   },
   "scripts": {
-    "test": "mocha"
-  },
-  "dependencies": {
-    "loogie": "^0.3.0",
-    "ramda": "^0.27.1"
+    "test": "ava"
   }
 }

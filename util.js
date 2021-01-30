@@ -1,8 +1,9 @@
 const { forEach, values } = require("ramda");
-const { always, compose, equals, ifElse } = require("ramda");
+const { compose } = require("ramda");
 const { round } = Math;
 
-const deadOrAlive = ifElse(equals(true), always("alive"), always("dead"));
+// todo: remove flimsy coersive evaluation going against either 1 or true
+const deadOrAlive = (value) => (value ? "alive" : "dead");
 const deadOrAliveRound = compose(deadOrAlive, round);
 
 const writeLn = (output) => console.log(output);

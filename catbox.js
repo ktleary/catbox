@@ -37,7 +37,7 @@ function main() {
   const catPackage = createCats(CAT1, CAT2);
   const machineGuess = guessCat2Status(prop("coinflipper", catPackage));
   const stats = createStats(catPackage, machineGuess);
-  console.log(stats);
+  console.log(stats)
   const catReport = createCatReport({
     CAT1,
     CAT2,
