@@ -2,7 +2,6 @@ const { forEach, values } = require("ramda");
 const { compose } = require("ramda");
 const { round } = Math;
 
-// todo: remove flimsy coersive evaluation going against either 1 or true
 const deadOrAlive = (value) => (value ? "alive" : "dead");
 const deadOrAliveRound = compose(deadOrAlive, round);
 

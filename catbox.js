@@ -5,7 +5,6 @@ const createCatReport = require("./report");
 const { Random } = require("random-js");
 const { freeze } = Object;
 
-// guessCat2Status :: (Function) -> Number
 function guessCat2Status(coinflip) {
   const guesses = map(
     resolve,
@@ -15,7 +14,6 @@ function guessCat2Status(coinflip) {
   return divide(sum(guesses), length(guesses));
 }
 
-// createCats :: (String, String) -> Object
 function createCats(CAT1, CAT2) {
   const random = new Random();
   const coinflipper = () => random.integer(0, 1);
@@ -27,7 +25,6 @@ function createCats(CAT1, CAT2) {
   });
 }
 
-// createStats :: (Object, Number) -> Object
 const createStats = (catPackage, machineGuess) => ({
   [CAT1]: catPackage[CAT1](),
   [MACHINE]: machineGuess,
