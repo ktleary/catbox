@@ -12,7 +12,7 @@
     "random-js": "^2.1.0"
   },
   "devDependencies": {
-    "eslint": "^7.22.0",
+    "eslint": "^7.24.0",
     "eslint-plugin-fp": "^2.3.0"
   },
   "homepage": "https://github.com/ktleary/catbox#readme",

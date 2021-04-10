@@ -25,3 +25,20 @@ Sample Report:
 
 -------------
 
+
+## Installation
+
+- git clone
+- npm install
+
+## Usage
+
+- node catbox.js
+
+## Test
+
+- npm test
+
+## Contributing
+
+- Please feel free to submit a PR
