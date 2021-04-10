@@ -1,0 +1,15 @@
+image: archlinux
+packages:
+  - nodejs
+  - npm
+sources:
+  - https://git.sr.ht/~djlooop/catbox
+tasks:
+  - setup: |
+      cd catbox
+      npm install
+  - test: |
+      cd catbox
+      npm test
+
+

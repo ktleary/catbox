@@ -1,4 +1,6 @@
 ### catbox
+[![builds.sr.ht status](https://builds.sr.ht/~djlooop/catbox.svg)](https://builds.sr.ht/~djlooop/catbox?)
+
 
 In this exercise, we simultaneously generate two entangled cats,
  "Cat One" and "Cat Two". One of the cats is alive (isAlive) (status 1)
