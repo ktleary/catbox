@@ -31,7 +31,7 @@ const createStats = (catPackage, machineGuess) => ({
   [CAT2]: catPackage[CAT2](),
 });
 
-function main() {
+(function main() {
   const catPackage = createCats(CAT1, CAT2);
   const machineGuess = guessCat2Status(prop("coinflipper", catPackage));
   const stats = createStats(catPackage, machineGuess);
@@ -42,7 +42,4 @@ function main() {
     stats,
   });
   return writeEachValue(catReport);
-}
-
-/* eslint-disable fp/no-unused-expression */
-main();
+})();

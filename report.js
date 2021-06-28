@@ -30,5 +30,5 @@ const createCatReport = ({ CAT1, CAT2, MACHINE, stats }) => {
     footer,
   });
 };
-/* eslint-disable fp/no-mutation */
+
 module.exports = createCatReport;
