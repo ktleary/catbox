@@ -1,45 +1,51 @@
-### catbox
-[![builds.sr.ht status](https://builds.sr.ht/~djlooop/catbox.svg)](https://builds.sr.ht/~djlooop/catbox?)
+# catbox
 
+spooky coin flips
 
-In this exercise, we simultaneously generate two entangled cats,
- "Cat One" and "Cat Two". One of the cats is alive (isAlive) (status 1)
-  while the other deceased (status 0).
+## The original experiment (catbox.js)
 
-After the cats are created, the outcome for Cat One is revealed and then
-the machine makes guesses about the status of Cat Two until a period
- of time has elapsed.
+Two entangled cats — "Cat One" and "Cat Two" — decided by one shared coin
+flip: one is alive, the other deceased. Cat One's outcome is revealed, then
+the machine guesses Cat Two's status until a period of time has elapsed.
 
-The test is to observe if quantum entanglement will influence
-the machine's random generation function to guess in favor
-of the actual outcome, since it is already known in the scope
-by virtue of Cat One's status being revealed.
+The test: will quantum entanglement influence the machine's random generation
+function to guess in favor of the actual outcome?
 
+Verdict from the original run: no — the machine sampled fresh flips from the
+generator, and fresh flips share no information with the hidden bit. Chance
+forever.
 
-Sample Report:
+## The Bell upgrade (spooky-cats.mjs)
 
--- Cats Report -------------
+The upgrade gives the machine what it was missing: a *measurement* of Cat One
+(a real channel to the pair), and lets the measurement settings tilt. Then
+three worlds compete:
 
-- Cat One is alive
-- The Machine correctly predicted Cat Two is dead,
-  picking alive 49.70% of the time.
-- Cat Two is dead. Long live Cat Two.
+| world | what it is | CHSH \|S\| |
+|---|---|---|
+| `independent` | no relation between the cats | ≈ 0 |
+| `pre-agreed` | Einstein's local hidden variables — answers decided at pair creation, deterministic in (setting, λ) | ≤ 2.00 |
+| `entangled` | the quantum singlet | ≈ 2.83 |
 
--------------
+The entangled pair's guess-accuracy rides **above the classical line at every
+tilt** — that excess is the spooky action at a distance (Bell 1964;
+Aspect/Clauser/Zeilinger, Nobel 2022).
 
+Run:
+
+```bash
+node spooky-cats.mjs
+```
 
 ## Installation
 
 - git clone
-- npm install
+- npm install (for the original catbox.js; spooky-cats.mjs is dependency-free)
 
 ## Usage
 
-- node catbox.js
-
-## Test
-
-- npm test
+- node catbox.js (the original experiment)
+- node spooky-cats.mjs (the Bell upgrade)
 
 ## Contributing
 
